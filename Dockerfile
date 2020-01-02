@@ -1,5 +1,5 @@
-
-FROM docker.artifacts.tamkeen.cloud/erp/erp-base-saas
+FROM genral73/base-saas:latest
+#FROM docker.artifacts.tamkeen.cloud/erp/erp-base-saas
 
 ARG ODOO_USER=odoo
 ARG ODOO_HOME=/home/$ODOO_USER
