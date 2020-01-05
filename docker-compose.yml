@@ -27,7 +27,10 @@ services:
     - DB_PASSWORD=odoo
     - DB_PORT=5432
     - DB_HOST=postgres
-#------------------------------ Redis Parameters -----------------------------------     
+    - DB_NAME=dsas
+    - AUTOINSTALL_MODULES=crm,portal,website
+
+    #------------------------------ Redis Parameters -----------------------------------     
     - REDIS_ENABLE=Ture
     - REDIS_HOST=redis
     - REDIS_PORT=6379
@@ -37,10 +40,10 @@ services:
     #------------------------------ S3 Storage Parameters -----------------------------------    
     - S3_PROVIDER=stc
     - AWS_HOST=https://api-object.bluvalt.com:8082
-    - AWS_REGION=eu-west-1
-    - AWS_ACCESS_KEY_ID=SE8XY3WBWGCU1UC4AC6K
-    - AWS_SECRET_ACCESS_KEY=fUhxgnC3IU5f2WNuVLVGe89Ug1aDL2Q+Mi2Ul86D
-    - AWS_BUCKETNAME=saaserp-comp
+    - AWS_REGION=us-east-1
+    - AWS_ACCESS_KEY_ID=MLMUWM7SVNMVV5R2N42Y
+    - AWS_SECRET_ACCESS_KEY=tJ10Jlwep4GHGAZIJO51+MFBbJAvJuq0iVIZabKS
+    - AWS_BUCKETNAME=saas-comp
   postgres:
     image: postgres:11
     volumes:
