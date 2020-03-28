@@ -1,8 +1,0 @@
-<odoo>
-    <data noupdate="1">
-        <record id="server_parameter" model="ir.config_parameter">
-            <field name="key">ir_attachment.location</field>
-            <field name="value">False</field>
-        </record>
-    </data>
-</odoo>

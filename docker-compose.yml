@@ -1,0 +1,61 @@
+version: '3'
+
+volumes:
+  database_data:
+    driver: local
+  redis-data:
+
+
+services:
+  odoo:
+    image: genral73/odoo-saas:latest
+     
+    links:
+    - postgres
+    - redis
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 700M
+    ports:
+    - "3000:8069"
+
+    environment:
+    #------------------------------ Database Parameters --------------------------------
+    - DB_USER=odoo
+    - DB_PASSWORD=odoo
+    - DB_PORT=5432
+    - DB_HOST=postgres
+    - DB_NAME=dsas
+    - AUTOINSTALL_MODULES=crm,portal,website
+
+    #------------------------------ Redis Parameters -----------------------------------     
+    - REDIS_ENABLE=Ture
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DBINDEX=1
+    - REDIS_PASS=None
+
+    #------------------------------ S3 Storage Parameters -----------------------------------    
+    - S3_PROVIDER=stc
+    - AWS_HOST=https://api-object.bluvalt.com:8082
+    - AWS_REGION=us-east-1
+    - AWS_ACCESS_KEY_ID=MLMUWM7SVNMVV5R2N42Y
+    - AWS_SECRET_ACCESS_KEY=tJ10Jlwep4GHGAZIJO51+MFBbJAvJuq0iVIZabKS
+    - AWS_BUCKETNAME=saas-comp
+  postgres:
+    image: postgres:11
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    ports:
+    - "5431:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+  redis:
+    image: redis:3
+    volumes:
+      - redis-data:/data
+
